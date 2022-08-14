@@ -1,6 +1,7 @@
 const hamburger = document.querySelector('.hamburger'),
       menu = document.querySelector('.menu'),
       closeElem = document.querySelector('.menu__close');
+      anchors = document.querySelectorAll('.menu__link');
 
 hamburger.addEventListener('click', () => {
   menu.classList.add('active');
@@ -8,6 +9,21 @@ hamburger.addEventListener('click', () => {
 
 closeElem.addEventListener('click', () => {
   menu.classList.remove('active');
+});
+
+
+anchors.forEach(anchor => {
+  anchor.addEventListener('click', (e) => {
+    e.preventDefault();
+    menu.classList.remove('active');
+
+    const blockID = anchor.querySelector('a').getAttribute('href');
+    
+    document.querySelector(blockID).scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  });
 });
 
 const counters = document.querySelectorAll('.skills__ratings-counter'),
